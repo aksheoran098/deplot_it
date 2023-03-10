@@ -14,9 +14,12 @@ app.use(express.urlencoded({extended: true}))
 app.use(express.json())
 
 
-connectDatabase();
+
 app.use('/',home)
 
-app.listen(process.env.PORT, ()=>{
-    console.log(`server running successfully`)
-}) 
+connectDatabase().then( ()=>{
+    app.listen(process.env.PORT, ()=>{
+        console.log(`server running successfully`)
+    }) 
+}
+)
